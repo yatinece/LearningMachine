@@ -1,0 +1,11 @@
+#!/bin/bash
+
+mkdir -p learnai_ready/{api,core,cli,terraform,tests}
+cd learnai_ready
+# python -m venv venv
+# source venv/bin/activate  # On Windows: venv\Scripts\activate
+pip install fastapi uvicorn pydantic pyyaml typer python-multipart 
+
+
+
+###
