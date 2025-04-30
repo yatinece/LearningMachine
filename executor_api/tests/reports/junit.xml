@@ -1,0 +1,105 @@
+<?xml version="1.0" encoding="utf-8"?><testsuites><testsuite name="pytest" errors="2" failures="0" skipped="0" tests="2" time="3.038" timestamp="2025-04-18T14:45:46.509347+05:30" hostname="GenicsPC"><testcase classname="test_api_workflow" name="test_user_and_project_creation" time="2.012"><error message="failed on setup with &quot;requests.exceptions.HTTPError: 400 Client Error: Bad Request for url: http://localhost:8000/users/&quot;">session = &lt;requests.sessions.Session object at 0x000001C14844D870&gt;
+
+    @pytest.fixture(scope="session")
+    def user(session):
+        """Creates a test user and returns its details."""
+        user_payload = {
+            "user_id": 1,
+            "username": "testuser",
+            "email": "test@example.com",
+            "meta_data": {
+                "role": "data_scientist",
+                "department": "research"
+            }
+        }
+        resp = session.post(f"{BASE_URL}/users/", json=user_payload)
+&gt;       resp.raise_for_status()
+
+test_api_workflow.py:44: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+self = &lt;Response [400]&gt;
+
+    def raise_for_status(self):
+        """Raises :class:`HTTPError`, if one occurred."""
+    
+        http_error_msg = ""
+        if isinstance(self.reason, bytes):
+            # We attempt to decode utf-8 first because some servers
+            # choose to localize their reason strings. If the string
+            # isn't utf-8, we fall back to iso-8859-1 for all other
+            # encodings. (See PR #3538)
+            try:
+                reason = self.reason.decode("utf-8")
+            except UnicodeDecodeError:
+                reason = self.reason.decode("iso-8859-1")
+        else:
+            reason = self.reason
+    
+        if 400 &lt;= self.status_code &lt; 500:
+            http_error_msg = (
+                f"{self.status_code} Client Error: {reason} for url: {self.url}"
+            )
+    
+        elif 500 &lt;= self.status_code &lt; 600:
+            http_error_msg = (
+                f"{self.status_code} Server Error: {reason} for url: {self.url}"
+            )
+    
+        if http_error_msg:
+&gt;           raise HTTPError(http_error_msg, response=self)
+E           requests.exceptions.HTTPError: 400 Client Error: Bad Request for url: http://localhost:8000/users/
+
+..\..\.venv\lib\site-packages\requests\models.py:1024: HTTPError</error></testcase><testcase classname="test_api_workflow" name="test_ml_experiment_workflow" time="0.000"><error message="failed on setup with &quot;requests.exceptions.HTTPError: 400 Client Error: Bad Request for url: http://localhost:8000/users/&quot;">session = &lt;requests.sessions.Session object at 0x000001C14844D870&gt;
+
+    @pytest.fixture(scope="session")
+    def user(session):
+        """Creates a test user and returns its details."""
+        user_payload = {
+            "user_id": 1,
+            "username": "testuser",
+            "email": "test@example.com",
+            "meta_data": {
+                "role": "data_scientist",
+                "department": "research"
+            }
+        }
+        resp = session.post(f"{BASE_URL}/users/", json=user_payload)
+&gt;       resp.raise_for_status()
+
+test_api_workflow.py:44: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+self = &lt;Response [400]&gt;
+
+    def raise_for_status(self):
+        """Raises :class:`HTTPError`, if one occurred."""
+    
+        http_error_msg = ""
+        if isinstance(self.reason, bytes):
+            # We attempt to decode utf-8 first because some servers
+            # choose to localize their reason strings. If the string
+            # isn't utf-8, we fall back to iso-8859-1 for all other
+            # encodings. (See PR #3538)
+            try:
+                reason = self.reason.decode("utf-8")
+            except UnicodeDecodeError:
+                reason = self.reason.decode("iso-8859-1")
+        else:
+            reason = self.reason
+    
+        if 400 &lt;= self.status_code &lt; 500:
+            http_error_msg = (
+                f"{self.status_code} Client Error: {reason} for url: {self.url}"
+            )
+    
+        elif 500 &lt;= self.status_code &lt; 600:
+            http_error_msg = (
+                f"{self.status_code} Server Error: {reason} for url: {self.url}"
+            )
+    
+        if http_error_msg:
+&gt;           raise HTTPError(http_error_msg, response=self)
+E           requests.exceptions.HTTPError: 400 Client Error: Bad Request for url: http://localhost:8000/users/
+
+..\..\.venv\lib\site-packages\requests\models.py:1024: HTTPError</error></testcase></testsuite></testsuites>

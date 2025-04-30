@@ -5,3 +5,4 @@ pyyaml
 typer
 python-multipart 
 streamlit
+requests

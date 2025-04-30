@@ -1,0 +1,11 @@
+data_source:
+  type: ceph
+  file_name: my_data.csv
+model_config:
+  target_variable: churn
+model:
+  type: xgboost
+hyperparameter_tuning:
+  enabled: true
+experiment_tracking:
+  enabled: true
